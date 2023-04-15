@@ -15,10 +15,16 @@ namespace Rhymes.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.message = "ss";
             return View();
         }
 
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        public IActionResult About()
         {
             return View();
         }
