@@ -56,7 +56,7 @@ namespace treeBuilder
         public IEnumerable<string> GetRhymes(string word)
         {
             WordNode current = root;
-            int wordLength = word.Length; // 4
+            int wordLength = word.Length; 
 
             for (int i = 1; i <= wordLength; ++i)
             {
@@ -83,11 +83,11 @@ namespace treeBuilder
                 omitNode = current.val;
                 current = current.parrent;
 
-                if (rhymes.Count > 150)
+                if (rhymes.Count > 15)
                     break;
             }
 
-            return rhymes;
+                return rhymes;
         }
 
         public void Insert(string word)

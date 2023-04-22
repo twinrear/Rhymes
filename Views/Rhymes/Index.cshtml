@@ -8,11 +8,6 @@
     <h1 class="display-4">Пошук рим</h1>
 </div>
 
-@*<form action="/Rhymes/GetRhymes" method="get" class="text-center">
-    <input type="text" name="word" placeholder="Введіть слово...">
-    <button type="submit">Шукати</button>
-</form>*@
-
 <form class="text-center">
     <input type="text" id="word" placeholder="Введіть значення...">
     <button type="button" onclick="getData()">Надіслати</button>
@@ -23,18 +18,38 @@
 <p>@Html.Raw(Model)</p>
 
 <script>
-    function getData() {
-        var inputValue = document.getElementById("word").value;
-        var url = "/Rhymes/GetRhymes?word=" + inputValue;
+
+    var pathAPI = "/Rhymes/GetRhymes?word=";
+
+    function getData(inputValue = "") {
+        if (inputValue == "")
+        {
+            inputValue = document.getElementById("word").value;
+        }
+        var url = pathAPI + inputValue;
 
         var xhttp = new XMLHttpRequest();
+
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("result").innerHTML = this.responseText;
+
+                const myArray = this.responseText.split(', ');
+
+                myArray.forEach(function (word) {
+                    const apiURL = pathAPI + word;
+                    const linkHTML = `<a href="${apiURL}">${word}</a>`;
+                    document.body.innerHTML += linkHTML + '<br>';
+                });
             }
         };
         xhttp.open("GET", url, true);
         xhttp.send();
+
+        //fetch(url).then(response => response.text())
+        //    .then(data => console.log(data))
+        //    .catch(error => console.log('Помилка отримання даних:', error));
+
+        
     }
 </script>
 

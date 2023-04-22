@@ -25,9 +25,7 @@ namespace Rhymes.Controllers
             if(word == null) 
                 word = string.Empty;
 
-            //ViewBag.words = WordBank.getInstance().GetRhymes(word);
             return Content(string.Join(", ", WordBank.getInstance().GetRhymes(word)));
-            //return View(WordBank.getInstance().GetRhymes(word));
         }
     }
 }
